@@ -3,16 +3,18 @@
 #
 %define		qt_ver		4.5.2
 %define		_kdever		4.2.4
+%define		rev	rev1001033
 
 Summary:	Marble
 Summary(pl.UTF-8):	Marble
 Name:		marble
 Version:	0.7.1
-Release:	1
+Release:	1.%{rev}.0
 License:	LGPL v2
 Group:		X11/Libraries
-Source0:	http://developer.kde.org/~tackat/marble_0_7/%{name}-%{version}_rev938110.tar.gz
-# Source0-md5:	6073ecc2b944e944e42e6b6218cf6473
+#Source0:	http://developer.kde.org/~tackat/marble_0_7/%{name}-%{version}_%{rev}.tar.gz
+Source0:	%{name}-%{version}_%{rev}.tar.gz
+# Source0-md5:	2aa859dd6467c11047c2cbf90433dad3
 URL:		http://edu.kde.org/marble/
 # leave only required ones
 BuildRequires:	Qt3Support-devel >= %{qt_ver}
@@ -89,11 +91,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/plasma_applet_worldclock.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/CompassFloatItem.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/MapScaleFloatItem.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/MarbleCrosshairsPlugin.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/MarbleGeoDataPlugin.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/MarbleOverviewMap.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/MarbleStarsPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/NavigationFloatItem.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/CrosshairsPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/FileViewFloatItem.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/GeoRendererPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/GpsdPositionProviderPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/GraticulePlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/OsmAnnotatePlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/OverviewMap.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/Photo.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/QNamNetworkPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/StarsPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/Weather.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/Wikipedia.so
 %attr(755,root,root) %ghost %{_libdir}/libmarblewidget.so.?
 %attr(755,root,root) %{_libdir}/libmarblewidget.so.*.*.*
 %{_datadir}/apps/marble
