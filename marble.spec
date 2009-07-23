@@ -108,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libmarblewidget.so.*.*.*
 %{_datadir}/apps/marble
 %{_desktopdir}/kde4/marble.desktop
+%dir %{_datadir}/apps/marble_part
 %{_datadir}/apps/marble_part/marble_part.rc
 %{_datadir}/config.kcfg/marble.kcfg
 %{_datadir}/kde4/services/marble_part.desktop
