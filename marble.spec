@@ -26,11 +26,14 @@ BuildRequires:	QtScript-devel >= %{qt_ver}
 BuildRequires:	QtSvg-devel >= %{qt_ver}
 BuildRequires:	QtTest-devel >= %{qt_ver}
 BuildRequires:	QtUiTools-devel >= %{qt_ver}
+BuildRequires:	QtWebKit-devel
 BuildRequires:	QtXml-devel >= %{qt_ver}
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	cmake >= 2.6.3
+BuildRequires:	gpsd-devel >= 2.37
 BuildRequires:	kde4-kdelibs-devel >= %{_kdever}
 BuildRequires:	phonon-devel >= 4.3.1
+BuildRequires:	pkgconfig
 BuildRequires:	qt4-build >= %{qt_ver}
 BuildRequires:	qt4-qmake >= %{qt_ver}
 BuildRequires:	rpmbuild(macros) >= 1.293
