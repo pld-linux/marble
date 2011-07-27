@@ -1,21 +1,20 @@
 #
 # Conditional build:
 #
-%define		qt_ver		4.5.2
-%define		_kdever		4.2.4
-%define		rev	rev1001033
-
+%define         orgname     marble
+%define         _state      stable
+%define         qtver       4.7.3
+#
 Summary:	Marble
 Summary(pl.UTF-8):	Marble
 Name:		marble
-Version:	0.7.1
-Release:	1.%{rev}.0
+Version:	4.7.0
+Release:	1
 License:	LGPL v2
 Group:		X11/Libraries
-#Source0:	http://developer.kde.org/~tackat/marble_0_7/%{name}-%{version}_%{rev}.tar.gz
-Source0:	%{name}-%{version}_%{rev}.tar.gz
-# Source0-md5:	2aa859dd6467c11047c2cbf90433dad3
-URL:		http://edu.kde.org/marble/
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+# Source0-md5:	d9dc301b31b6f18531e65a2b6bbec520
+URL:		http://www.kde.org/
 # leave only required ones
 BuildRequires:	Qt3Support-devel >= %{qt_ver}
 BuildRequires:	QtCore-devel >= %{qt_ver}
@@ -37,6 +36,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	qt4-build >= %{qt_ver}
 BuildRequires:	qt4-qmake >= %{qt_ver}
 BuildRequires:	rpmbuild(macros) >= 1.293
+Obsoletes:	kde4-kdeedu-marble
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -62,17 +62,12 @@ This package contains Marble header files.
 Pakiet zawiera pliki nagłówkowe dla Marble.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 %build
 install -d build
 cd build
-%cmake .. \
-	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-	-DCMAKE_BUILD_TYPE=%{!?debug:Release}%{?debug:Debug} \
-%if "%{_lib}" == "lib64"
-	-DLIB_SUFFIX=64
-%endif
+%cmake ..
 
 %{__make}
 
@@ -82,40 +77,55 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%find_lang %{name} --with-kde
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/geodatatest
 %attr(755,root,root) %{_bindir}/marble
+%attr(755,root,root) %{_bindir}/routing-instructions
 %attr(755,root,root) %{_bindir}/tilecreator
 %attr(755,root,root) %{_libdir}/kde4/libmarble_part.so
 %attr(755,root,root) %{_libdir}/kde4/plasma_applet_worldclock.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/AprsPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/CompassFloatItem.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/MapScaleFloatItem.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/NavigationFloatItem.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/CrosshairsPlugin.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/FileViewFloatItem.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/GeoRendererPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/EarthquakePlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/GosmorePlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/GpsdPositionProviderPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/GraticulePlugin.so
-%attr(755,root,root) %{_libdir}/kde4/plugins/marble/OsmAnnotatePlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/HostipPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/LatLonPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/LocalDatabasePlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/LocalOsmSearchPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/MapScaleFloatItem.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/MonavPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/NavigationFloatItem.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/NominatimPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/OpenDesktopPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/OpenRouteServicePlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/OverviewMap.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/Photo.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/PositionMarker.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/ProgressFloatItem.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/QNamNetworkPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/RoutingPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/RoutinoPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/StarsPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/Weather.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/Wikipedia.so
-%attr(755,root,root) %ghost %{_libdir}/libmarblewidget.so.?
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/YoursPlugin.so
+%attr(755,root,root) %ghost %{_libdir}/libmarblewidget.so.??
 %attr(755,root,root) %{_libdir}/libmarblewidget.so.*.*.*
 %{_datadir}/apps/marble
 %{_desktopdir}/kde4/marble.desktop
-%dir %{_datadir}/apps/marble_part
-%{_datadir}/apps/marble_part/marble_part.rc
 %{_datadir}/config.kcfg/marble.kcfg
 %{_datadir}/kde4/services/marble_part.desktop
 %{_datadir}/kde4/services/plasma-applet-kworldclock.desktop
+%{_iconsdir}/hicolor/*x*/apps/marble.png
 
 %files devel
 %defattr(644,root,root,755)
