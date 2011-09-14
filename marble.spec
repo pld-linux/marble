@@ -3,13 +3,13 @@
 #
 %define         orgname     marble
 %define         _state      stable
-%define         qtver       4.7.3
+%define         qtver       4.7.4
 #
 Summary:	Marble
 Summary(pl.UTF-8):	Marble
 Name:		marble
 Version:	4.7.1
-Release:	1
+Release:	2
 License:	LGPL v2
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -36,7 +36,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	qt4-build >= %{qt_ver}
 BuildRequires:	qt4-qmake >= %{qt_ver}
 BuildRequires:	rpmbuild(macros) >= 1.293
-Obsoletes:	kde4-kdeedu-marble
+Obsoletes:	kde4-kdeedu-marble < 4.6.99
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -54,6 +54,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla Marble
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	kde4-kdelibs-devel >= %{version}
+Obsoletes:	kde4-kdeedu-devel < 4.6.99
 
 %description devel
 This package contains Marble header files.
