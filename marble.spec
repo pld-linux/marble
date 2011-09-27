@@ -9,7 +9,7 @@ Summary:	Marble
 Summary(pl.UTF-8):	Marble
 Name:		marble
 Version:	4.7.1
-Release:	2
+Release:	3
 License:	LGPL v2
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
