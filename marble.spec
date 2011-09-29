@@ -9,11 +9,12 @@ Summary:	Marble
 Summary(pl.UTF-8):	Marble
 Name:		marble
 Version:	4.7.1
-Release:	3
+Release:	4
 License:	LGPL v2
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	c51019621e91c53b1ded13eb2cfc76c0
+Patch0:		%{name}-gpsd3.patch
 URL:		http://www.kde.org/
 # leave only required ones
 BuildRequires:	Qt3Support-devel >= %{qt_ver}
@@ -64,6 +65,7 @@ Pakiet zawiera pliki nagłówkowe dla Marble.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 install -d build
