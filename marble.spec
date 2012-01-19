@@ -3,17 +3,17 @@
 #
 %define         orgname     marble
 %define         _state      stable
-%define         qtver       4.7.4
+%define         qtver       4.8.0
 #
 Summary:	Marble
 Summary(pl.UTF-8):	Marble
 Name:		marble
-Version:	4.7.4
+Version:	4.8.0
 Release:	1
 License:	LGPL v2
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	77d6be4dd6de1a81551c525ba93a409e
+# Source0-md5:	95c546f33706d8fcbef8a04b4b18a17f
 URL:		http://www.kde.org/
 # leave only required ones
 BuildRequires:	Qt3Support-devel >= %{qt_ver}
@@ -88,21 +88,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/geodatatest
 %attr(755,root,root) %{_bindir}/marble
+%attr(755,root,root) %{_bindir}/marble-touch
 %attr(755,root,root) %{_bindir}/routing-instructions
 %attr(755,root,root) %{_bindir}/tilecreator
 %attr(755,root,root) %{_libdir}/kde4/libmarble_part.so
 %attr(755,root,root) %{_libdir}/kde4/plasma_applet_worldclock.so
+%attr(755,root,root) %{_libdir}/kde4/plasma_runner_marble.so
 %dir %{_libdir}/kde4/plugins/marble
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/AprsPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/CachePlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/CompassFloatItem.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/CrosshairsPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/EarthquakePlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/ElevationProfileFloatItem.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/GosmorePlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/GpsdPositionProviderPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/GpsInfo.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/GpxPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/GraticulePlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/HostipPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/KmlPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/LatLonPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/LocalDatabasePlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/LocalOsmSearchPlugin.so
@@ -112,14 +118,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/NominatimPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/OpenDesktopPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/OpenRouteServicePlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/OsmPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/OverviewMap.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/Photo.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/PlacemarkPositionProviderPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/PntPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/PositionMarker.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/ProgressFloatItem.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/QNamNetworkPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/RoutingPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/RoutinoPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/SatellitesPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/Speedometer.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/StarsPlugin.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/marble/SunPlugin.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/Weather.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/Wikipedia.so
 %attr(755,root,root) %{_libdir}/kde4/plugins/marble/YoursPlugin.so
@@ -130,6 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/marble.kcfg
 %{_datadir}/kde4/services/marble_part.desktop
 %{_datadir}/kde4/services/plasma-applet-kworldclock.desktop
+%{_datadir}/kde4/services/plasma-runner-marble.desktop
 %{_iconsdir}/hicolor/*x*/apps/marble.png
 
 %files devel
